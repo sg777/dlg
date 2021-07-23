@@ -412,7 +412,7 @@ void dlg_generic_outputf(dlg_generic_output_handler output, void* data,
 			output(data, "%s", origin->func);
 			++it;
 		} else if(next == 'o') {
-			output(data, "%s:%u", origin->file, origin->line);
+			output(data, "%s:%s:%u", origin->file, origin->func, origin->line);
 			++it;
 		} else if(next == 's') {
 			char buf[12];
@@ -544,7 +544,7 @@ void dlg_generic_outputf_stream(FILE* stream, const char* format_string,
 void dlg_default_output(const struct dlg_origin* origin, const char* string, void* data) {
 	FILE* stream = data ? (FILE*) data : stdout;
 	unsigned int features = dlg_output_file_line |
-		dlg_output_newline |
+		//dlg_output_newline |
 		dlg_output_threadsafe;
 
 #ifdef DLG_DEFAULT_OUTPUT_ALWAYS_COLOR
